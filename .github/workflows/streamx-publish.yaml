@@ -56,7 +56,7 @@ jobs:
           event-type: 'com.streamx.blueprints.page.published.v1'
           event-data: '{"type": "page/eds"}'
           external-resource-url: ${{ steps.vars.outputs.eds_page_url }}
-          subject: ${{ steps.vars.outputs.streamx_subject.html }}
+          subject: ${{ steps.vars.outputs.streamx_subject }}.html
 
       - name: Run publish plain nav/footer to StreamX
         if: (endsWith(steps.vars.outputs.streamx_subject_plain, 'nav.plain.html') || endsWith(steps.vars.outputs.streamx_subject_plain, 'footer.plain.html'))
