@@ -202,7 +202,10 @@ async function loadLazy(doc) {
   loadFonts();
 
   loadAlgoliaScripts();
-  attachAlgoliaSearch();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    attachAlgoliaSearch();
+  });
 }
 
 /**
