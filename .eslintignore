@@ -1,2 +1,4 @@
 helix-importer-ui
 *.min.js
+autocomplete-js.js
+autocomplete-init.js
