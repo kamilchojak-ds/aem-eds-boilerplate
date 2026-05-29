@@ -170,10 +170,12 @@ function loadAlgoliaScripts() {
  * Wraps search icon in a container that allows Algolia autocomplete.
  */
 function attachAlgoliaSearch() {
+  const searchIcon = document.querySelector('.icon.icon-search');
+  if (!searchIcon) return;
+  if (document.querySelector('#autocomplete')) return;
+
   const searchContainer = document.createElement('div');
   searchContainer.setAttribute('id', 'autocomplete');
-
-  const searchIcon = document.querySelector('.icon.icon-search');
 
   if (searchIcon) {
     const currentIconParent = searchIcon.parentNode;
@@ -202,7 +204,21 @@ async function loadLazy(doc) {
   loadFonts();
 
   loadAlgoliaScripts();
-  attachAlgoliaSearch();
+
+  const observer = new MutationObserver(() => {
+    const searchIcon = document.querySelector('.icon.icon-search');
+
+    if (searchIcon) {
+      attachAlgoliaSearch();
+
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 }
 
 /**
