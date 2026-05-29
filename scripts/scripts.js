@@ -203,13 +203,12 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  loadAlgoliaScripts();
-
   const observer = new MutationObserver(() => {
     const searchIcon = document.querySelector('.icon.icon-search');
 
     if (searchIcon) {
       attachAlgoliaSearch();
+      loadAlgoliaScripts();
 
       observer.disconnect();
     }
